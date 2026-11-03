@@ -229,6 +229,7 @@ export default withNextIntl({
   },
   experimental: {
     useTypeScriptCli: true,
+    ...(process.env.NEXT_BUILD_CPUS && { cpus: Number(process.env.NEXT_BUILD_CPUS) }),
   },
   async headers() {
     return headers;
