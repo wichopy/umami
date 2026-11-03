@@ -99,6 +99,16 @@ docker compose up -d
 
 ---
 
+## Deploying to Render
+
+This repository includes a `render.yaml` Blueprint for a Docker web service and a managed PostgreSQL database. In the Render dashboard, create a new Blueprint from your fork of this repository. Render builds the existing `Dockerfile`, supplies `DATABASE_URL`, generates `APP_SECRET`, and checks `/api/heartbeat`. The container runs database migrations before starting the server.
+
+After the first deploy, sign in with username **admin** and password **umami**, then change that password immediately. To enable two-factor authentication, set `TWO_FACTOR_ENCRYPTION_KEY` in the web service environment to a persistent 64-character hex value (for example, generate one with `openssl rand -hex 32`). Keep this value across deployments.
+
+The Blueprint restricts public database connections. Choose the web service and database plans that fit your traffic and retention needs in Render before creating the resources.
+
+---
+
 ## 🔄 Getting Updates
 
 To get the latest features, simply do a pull, install any new dependencies, and rebuild:
